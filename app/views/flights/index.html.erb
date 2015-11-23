@@ -7,11 +7,11 @@
 		<%= form_tag(root_path, :method => :get ) do%>
 			<div class="col-md-2">
 				<%= label_tag "From:" %>
-				<%= select_tag(:from_code, options_for_select(@airport_options), class: "form-control" ) %>
+				<%= select_tag(:from_id, options_for_select(@airport_options), class: "form-control" ) %>
 			</div>
 			<div class="col-md-2">
 				<%= label_tag "To:" %>
-				<%= select_tag(:to_code, options_for_select(@airport_options), class: "form-control" ) %>
+				<%= select_tag(:to_id, options_for_select(@airport_options), class: "form-control" ) %>
 			</div>
 			<div class="col-md-4">
 				<%= label_tag "Depature Date:" %>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="col-md-2">
 				<%= label_tag "Passengers:" %>
-				<%= select_tag(:passengers, options_for_select([[1],[2],[3],[4]]), class: "form-control" ) %>
+				<%= select_tag(:num_tickets, options_for_select([[1],[2],[3],[4]]), class: "form-control" ) %>
 			</div>
 			<div class="col-md-2">
 				<%= label_tag %>
@@ -29,3 +29,11 @@
 	</div>
 </div>
 <hr>
+<% @flights.each do |flight| %>
+	FROM:
+	<%= flight.from_airport.code %>
+	TO:
+	<%= flight.to_airport.code %>
+	DATETIME:
+	<%= flight.departure_time %>
+<% end %>
