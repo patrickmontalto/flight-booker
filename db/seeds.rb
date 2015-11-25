@@ -16,6 +16,8 @@ lax = Airport.create!(code: "LAX")
 
 # NYC to SFO
 Flight.create!(start_id: nyc.id, finish_id: sfo.id, departure_time: 3.hours.from_now, duration: 6)
+# NYC to SFO
+Flight.create!(start_id: nyc.id, finish_id: sfo.id, departure_time: 6.hours.from_now, duration: 6)
 # NYC to PDX
 Flight.create!(start_id: nyc.id, finish_id: pdx.id, departure_time: 1.week.from_now, duration: 5.5)
 # SFO to NYC

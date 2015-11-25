@@ -29,11 +29,32 @@
 	</div>
 </div>
 <hr>
-<% @flights.each do |flight| %>
-	FROM:
-	<%= flight.from_airport.code %>
-	TO:
-	<%= flight.to_airport.code %>
-	DATETIME:
-	<%= flight.departure_time %>
-<% end %>
+<div class="row">
+	<% if @flights.any? %>
+		<h4><%= "Flights on #{params[:date].to_datetime.strftime("%D")} for #{params[:num_tickets]} passengers" %></h4>
+		<%= form_tag({controller: "bookings", action: "new"}, :method => :get ) do %>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Departure</th>
+						<th>Arriving</th>
+						<th>Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @flights.each do |flight| %>
+						<tr>
+							<td><%= radio_button_tag 'flight', flight.id %></td>
+							<td><%= flight.from_airport.code %></td>
+							<td><%= flight.to_airport.code %></td>
+							<td><%= flight.departure_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p") %></td>
+						</tr>
+						<%= hidden_field_tag "num_tickets", params[:num_tickets] %>
+					<% end %>
+				</tbody>
+			</table>
+			<%= submit_tag "Book Flight", class: "btn btn-success pull-right" %>
+		<% end %>
+	<% end %>
+</div>
