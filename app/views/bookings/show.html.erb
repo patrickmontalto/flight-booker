@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">Booking Information</div>
+	<div class="panel-body">
+		<dl class="first dl-horizontal">
+			<dt>Booking No:</dt>
+			<dd><%= @booking.id %></dd>
+			<dt>Departing Airport:</dt>
+			<dd><%= @booking.flight.from_airport.code %></dd>
+			<dt>Arrival Airport:</dt>
+			<dd><%= @booking.flight.to_airport.code %></dd>
+		</dl>
+		<dl class="second dl-horizontal">
+			<dt>Flight No:</dt>
+			<dd><%= @booking.flight.id %></dd>
+			<dt>Departure Date:</dt>
+			<dd><%= @booking.flight.flight_date %></dd>
+			<dt>Departure Time:</dt>
+			<dd><%= @booking.flight.flight_time %></dd>
+		</dl>
+		<div id="passenger-info">
+		Passengers:
+			<ul>
+				<% @booking.passengers.each do |passenger| %>
+					<li><%= passenger.name %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
