@@ -1,9 +1,7 @@
 class BookingsController < ApplicationController
   def index
     @booking = Booking.search(params[:search])
-    if @booking
-      redirect_to @booking
-    end
+    redirect_to @booking if @booking
   end
 
   def new
