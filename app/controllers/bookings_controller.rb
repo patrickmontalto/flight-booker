@@ -1,4 +1,11 @@
 class BookingsController < ApplicationController
+  def index
+    @booking = Booking.search(params[:search])
+    if @booking
+      redirect_to @booking
+    end
+  end
+
   def new
     @booking = Booking.new(flight_id: params[:flight])
     @flight = Flight.find(params[:flight])

@@ -31,7 +31,7 @@
 <hr>
 <div class="row">
 	<% if @flights.any? %>
-		<h4><%= "Flights on #{params[:date].to_datetime.strftime("%D")} for #{params[:num_tickets]} passengers" %></h4>
+		<h4><%= "Flights on #{params[:date].to_datetime.strftime("%D")} for #{pluralize(params[:num_tickets], 'passenger')}" %></h4>
 		<%= form_tag({controller: "bookings", action: "new"}, :method => :get ) do %>
 			<table class="table table-striped">
 				<thead>
@@ -56,5 +56,7 @@
 			</table>
 			<%= submit_tag "Book Flight", class: "btn btn-success pull-right" %>
 		<% end %>
+	<% elsif params[:commit] == "Search" %>
+		<h4>No flights found for given parameters.</h4>
 	<% end %>
 </div>
