@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	<h1>Thank you for booking your flight with us, <%= @passenger.name%>!</h1>
+	<p>
+		You have successfully booked your flight. Your booking confirmation 
+		number is <%= @booking.id %>, and your flight number is <%= @flight.id %>
+	</p>
+	<p>
+		Your flight is set for departure on <%= @flight.flight_date %> at <%= @flight.flight_time %>.
+	</p>
+	<p>
+		Details about your flight can be viewed <%= link_to "here", booking_url(@booking.id) %>
+	</p>
+	<p>
+		Please arrive 3 hours early.
+		Have a great day and enjoy your flight!
+	</p>
+</body>
+</html>
